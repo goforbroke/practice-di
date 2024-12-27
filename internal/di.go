@@ -16,9 +16,8 @@ func NewContainer() *Container {
 }
 
 // Usecase
-func (c *Container) UsecaseQuery(place string) {
-	uf := usecase.NewUsecaseQuery(c.WeatherForecastClient())
-	uf.QueryToWeatherForecast(place)
+func (c *Container) NewUsecaseQuery() usecase.UsecaseQuery {
+	return usecase.NewUsecaseQuery(c.WeatherForecastClient())
 }
 
 // Infra

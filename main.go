@@ -1,9 +1,17 @@
 package main
 
-import di "github.com/goforbroke/practice-di/internal"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/goforbroke/practice-di/handler"
+	di "github.com/goforbroke/practice-di/internal"
+)
 
 func main() {
-	place := "tokyo"
-	uf := di.NewContainer()
-	uf.UsecaseQuery(place)
+	c := di.NewContainer()
+	weatherHandler := handler.NewWeatherHandler(c.NewUsecaseQuery())
+
+	r := gin.Default()
+
+	r.GET("/", weatherHandler.Weather)
+	r.Run(":3000")
 }
