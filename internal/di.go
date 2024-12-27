@@ -23,5 +23,5 @@ func (c *Container) UsecaseQuery(place string) {
 
 // Infra
 func (c *Container) WeatherForecastClient() usecase.WeatherForecastClient {
-	return weather.NewWheatherForecastClient()
+	return weather.NewWeatherForecastClient()
 }

@@ -34,7 +34,7 @@ type forecast struct {
 	Telop     string `json:"telop"`
 }
 
-func NewWheatherForecastClient() usecase.WeatherForecastClient {
+func NewWeatherForecastClient() usecase.WeatherForecastClient {
 	wc := &weatherClient{}
 	wc.init()
 	return wc
