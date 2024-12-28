@@ -21,7 +21,6 @@ func NewWeatherHandler(uq usecase.UsecaseQuery) WeatherHandler {
 
 func (wh weatherHandler) Weather(c *gin.Context) {
 	place := c.Query("place")
-	wh.usecaseQuery.QueryToWeatherForecast(place)
-	c.String(http.StatusOK, place)
-
+	w := wh.usecaseQuery.QueryToWeatherForecast(place)
+	c.JSON(http.StatusOK, w)
 }

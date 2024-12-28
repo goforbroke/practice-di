@@ -1,9 +1,7 @@
 package usecase
 
-import "fmt"
-
 type UsecaseQuery interface {
-	QueryToWeatherForecast(place string)
+	QueryToWeatherForecast(place string) Weather
 }
 
 type WeatherForecastClient interface {
@@ -24,13 +22,14 @@ func NewUsecaseQuery(client WeatherForecastClient) UsecaseQuery {
 	return &usecaseQuery{client: client}
 }
 
-func (uq *usecaseQuery) QueryToWeatherForecast(place string) {
+func (uq *usecaseQuery) QueryToWeatherForecast(place string) Weather {
 	weather, _ := uq.client.Forecast(place)
 
-	fmt.Printf("Weather summary: %v\n", weather.Summary)
-	fmt.Printf("Weather forecasts...\n")
-	for k, v := range weather.Forecasts {
-		fmt.Printf("\t%v: %v\n", k, v)
-	}
-	fmt.Printf("Update: %v", weather.PublicTime)
+	// fmt.Printf("Weather summary: %v\n", weather.Summary)
+	// fmt.Printf("Weather forecasts...\n")
+	// for k, v := range weather.Forecasts {
+	// 	fmt.Printf("\t%v: %v\n", k, v)
+	// }
+	// fmt.Printf("Update: %v", weather.PublicTime)
+	return *weather
 }
